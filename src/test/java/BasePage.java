@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 public class BasePage {
     protected WebDriver driver;
-    protected static final String BASE_URL = "http://localhost:8081/";
+    protected static final String BASE_URL = "http://host.docker.internal:8081/";
     protected WebDriverWait wait;
     Logger logger = LoggerFactory.getLogger(BasePage.class);
 

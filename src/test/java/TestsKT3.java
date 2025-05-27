@@ -17,15 +17,13 @@ class TestsKT3 {
 
     @BeforeAll
     static void setUp() {
-        // Инициализация драйвера
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+        driver = WebDriverFactory.createDriver();
         productPage = new ProductPage(driver);
     }
 
     @AfterAll
-    static void tearDown() {
-        // Закрытие драйвера после всех тестов
+    static void tearDown() throws InterruptedException {
+        Thread.sleep(5000);
         if (driver != null) {
             driver.quit();
         }

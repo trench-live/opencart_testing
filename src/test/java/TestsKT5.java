@@ -15,8 +15,7 @@ public class TestsKT5 {
 
     @BeforeSuite
     static void setUp() {
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+        driver = WebDriverFactory.createDriver();
         adminPage = new AdminPage(driver);
     }
 
@@ -25,7 +24,6 @@ public class TestsKT5 {
         adminPage.openAdminPage();
         adminPage.login();
         Thread.sleep(1000);
-        adminPage.login();
         adminPage.openCategoriesPage();
         adminPage.addNewCategory("Devices", "devices");
         adminPage.openStartPage();
@@ -49,7 +47,6 @@ public class TestsKT5 {
         adminPage.openAdminPage();
         adminPage.login();
         Thread.sleep(1000);
-        adminPage.login();
         adminPage.openProductsPage();
         adminPage.clickAddButton();
         adminPage.enterNameAndMetaTag(name, metaTag);
@@ -92,7 +89,6 @@ public class TestsKT5 {
         adminPage.openAdminPage();
         adminPage.login();
         Thread.sleep(1000);
-        adminPage.login();
         adminPage.openProductsPage();
         adminPage.clickSecondPageProductsTable();
         List<String> productNames = Arrays.asList("Keyboard 1", "Mouse 1");
@@ -124,7 +120,8 @@ public class TestsKT5 {
     }
 
     @AfterSuite
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(5000);
         if (driver != null) {
             driver.quit();
         }
